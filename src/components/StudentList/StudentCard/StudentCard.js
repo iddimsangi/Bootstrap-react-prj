@@ -1,7 +1,9 @@
 import {ListGroup, Button} from 'react-bootstrap';
 import React from 'react';
 import './StudentCard.css';
-export default function StudentCard() {
+export default function StudentCard(props) {
+    console.log(props);
+    const{fullName, email} = props.student;
     return (
             <div className="Scard" >
                  {/* <Button style={{marginBottom:'10px', float:'right',
@@ -27,7 +29,7 @@ export default function StudentCard() {
                         fontSize:'22px',
                         textTransform:'uppercase'
                         }}>
-                    Cras justo odio  
+                   {fullName} 
                     <span style={{
                      display:'block',
                      fontFamily:'-moz-initial', 
@@ -36,7 +38,7 @@ export default function StudentCard() {
                      fontWeight:'500',
                      color:'green',
                      marginLeft:'60px',
-                     marginTop:'-16px'}}>adammsangi@gmail.com</span>          
+                     marginTop:'-16px'}}>{email}</span>          
                     </h>
                    <div style={{float:'right', marginTop:'-45px'}}>
                    <Button variant="primary">Update</Button> 

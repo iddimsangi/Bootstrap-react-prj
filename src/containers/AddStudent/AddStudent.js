@@ -1,10 +1,28 @@
 import React, { Component } from 'react'
 import {Form, Button} from 'react-bootstrap'
 export default class AddStudent extends Component {
-    render() {
+    state = {
+        fullName:"",
+        email:""
+    }
+    addStudent = (e) =>{
+        e.preventDefault();
+        if(this.state.fullName === "" || this.state.email === ""){
+            alert("these fields are mandatory")
+            return
+        }
+        //clear the fields
+        this.setState({
+            fullName:"",
+            email:""
+        });
+        this.props.addStudentHandler(this.state);
+    }
+
+    render(props) {
         return (
             <div style={{ width:'50%', margin:'40px auto'}}>
-                <Form 
+                <Form onSubmit={this.addStudent} 
                 style={{backgroundColor:'#ccc', 
                        padding:'30px',
                        borderRadius:'5px',
@@ -13,12 +31,18 @@ export default class AddStudent extends Component {
                        }}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Full Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Full Name" />
+                        <Form.Control 
+                        type="text" 
+                        placeholder="Enter Full Name"
+                        onChange={(e) => this.setState({fullName:e.target.value})} />
                        
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control 
+                        type="email" 
+                        placeholder="Enter email" 
+                        onChange={(e) => this.setState({email:e.target.value})}/>
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

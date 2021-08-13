@@ -1,7 +1,13 @@
 import React from 'react'
 import StudentCard from './StudentCard/StudentCard'
 import {Form,FormControl, Button} from 'react-bootstrap';
-function StudentList() {
+function StudentList(props) {
+    console.log(props);
+    const studentListCard = props.studentsArray.map(studentObj =>{
+        return <StudentCard 
+        student ={studentObj}
+        key={studentObj.id} />
+    })
     return (
         <div>
             <div style={{margin:'20px auto', marginLeft:'30%'}}>
@@ -18,9 +24,8 @@ function StudentList() {
             {/* <h1 style={{float:'right'}}>Student List</h1> */}
             </div>
              
-             <StudentCard />
-             <StudentCard />
-             <StudentCard />
+             {studentListCard}
+           
         </div>
     )
 }
