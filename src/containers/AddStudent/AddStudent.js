@@ -17,6 +17,8 @@ export default class AddStudent extends Component {
             email:""
         });
         this.props.addStudentHandler(this.state);
+        console.log(this.props);
+        this.props.history.push("/");
     }
 
     render(props) {

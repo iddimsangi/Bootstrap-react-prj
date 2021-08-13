@@ -7,6 +7,12 @@ import StudentList from '../components/StudentList/StudentList'
 import { uuid } from 'uuidv4';
 import StudentDetails from '../components/StudentDetails/StudentDetails'
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   const[students, setstudents] = useState([]);
@@ -59,14 +65,32 @@ function App() {
   // {"fullName":"Georgie Klaves","email":"gklaves8@gmpg.org"},
   // {"fullName":"Haley Midlar","email":"hmidlar9@blogger.com"}]
   return (
-    <Container>
+    <Router>
+      <Container>
       <Header/>
-      <AddStudent addStudentHandler={addStudentHandler}/>
-      <StudentList 
-      studentsArray={students}
-      deleteStudentHandler={deleteStudentHandler}/>
-      {/* <StudentDetails/> */}
-    </Container>
+      <Switch>
+          <Route path="/" exact render={ (props) =>(
+            <StudentList {...props} 
+              studentsArray={students}
+              deleteStudentHandler={deleteStudentHandler} />
+          )}/>
+          <Route path="/AddStudent" render={(props) =>(
+            <AddStudent
+            {...props}
+            addStudentHandler={addStudentHandler}/>
+          )}/>
+      </Switch>
+      </Container>
+      
+    </Router>
+    // <Container>
+    //   <Header/>
+    //   <AddStudent addStudentHandler={addStudentHandler}/>
+    //   <StudentList 
+    //   studentsArray={students}
+    //   deleteStudentHandler={deleteStudentHandler}/>
+    //   {/* <StudentDetails/> */}
+    // </Container>
   );
 }
 
