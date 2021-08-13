@@ -34,6 +34,7 @@ export default class AddStudent extends Component {
                         <Form.Control 
                         type="text" 
                         placeholder="Enter Full Name"
+                        value={this.state.fullName}
                         onChange={(e) => this.setState({fullName:e.target.value})} />
                        
                     </Form.Group>
@@ -41,6 +42,7 @@ export default class AddStudent extends Component {
                         <Form.Label>Email address</Form.Label>
                         <Form.Control 
                         type="email" 
+                        value={this.state.email}
                         placeholder="Enter email" 
                         onChange={(e) => this.setState({email:e.target.value})}/>
                     </Form.Group>
