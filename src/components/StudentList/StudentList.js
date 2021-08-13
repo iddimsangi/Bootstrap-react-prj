@@ -6,7 +6,8 @@ function StudentList(props) {
     const studentListCard = props.studentsArray.map(studentObj =>{
         return <StudentCard 
         student ={studentObj}
-        key={studentObj.id} />
+        key={studentObj.id}
+        deleteStudent ={() =>props.deleteStudentHandler(studentObj.id)} />
     })
     return (
         <div>

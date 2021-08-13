@@ -29,7 +29,13 @@ function App() {
   //set student to local storage
   useEffect(() =>{
     localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
-  }, [students])
+  }, [students]);
+  const deleteStudentHandler = (id) =>{
+    const studentRemains = students.filter(student =>{
+      return student.id !== id;
+    });
+    setstudents(studentRemains);
+  }
   // const students = [{"fullName":"Anselma Mincini","email":"amincini0@upenn.edu"},
   // {"fullName":"Druci Pennings","email":"dpennings1@angelfire.com"},
   // {"fullName":"Fair Nickoles","email":"fnickoles2@bbb.org"},
@@ -44,7 +50,9 @@ function App() {
     <Container>
       <Header/>
       <AddStudent addStudentHandler={addStudentHandler}/>
-      <StudentList studentsArray={students}/>
+      <StudentList 
+      studentsArray={students}
+      deleteStudentHandler={deleteStudentHandler}/>
       {/* <StudentDetails/> */}
     </Container>
   );

@@ -3,7 +3,7 @@ import React from 'react';
 import './StudentCard.css';
 export default function StudentCard(props) {
     console.log(props);
-    const{fullName, email} = props.student;
+    const{id,fullName, email} = props.student;
     return (
             <div className="Scard" >
                  {/* <Button style={{marginBottom:'10px', float:'right',
@@ -42,7 +42,10 @@ export default function StudentCard(props) {
                     </h>
                    <div style={{float:'right', marginTop:'-45px'}}>
                    <Button variant="primary">Update</Button> 
-                   <Button style={{marginLeft:'5px'}}  variant="danger">Delete</Button>
+                   <Button 
+                   onClick={() => props.deleteStudent(id)}
+                   style={{marginLeft:'5px'}}  
+                   variant="danger">Delete</Button>
                    </div>
             </ListGroup.Item>                    
             </ListGroup>
