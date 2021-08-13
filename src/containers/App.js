@@ -42,6 +42,7 @@ function App() {
     // localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
   }, [students]);
   const deleteStudentHandler = (id) =>{
+    axios.delete(`http://localhost:3006/students/${id}`)
     const studentRemains = students.filter(student =>{
       return student.id !== id;
     });
