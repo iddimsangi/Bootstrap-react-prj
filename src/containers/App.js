@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 import { Container} from 'react-bootstrap'
 import Header from '../components/Header/Header'
 import AddStudent from '../containers/AddStudent/AddStudent'
@@ -9,26 +10,36 @@ import './App.css';
 
 function App() {
   const[students, setstudents] = useState([]);
-  const STORAGE_KEY = 'students';
+  // const STORAGE_KEY = 'students';
   const addStudentHandler =(student) =>{
-    console.log(student);
+    
+    // console.log(student);
     const newStudent = {
       id:uuid(),
       ...student
     }
-    setstudents([...students, newStudent]);
+    axios.post(`http://localhost:3006/students/`, newStudent).then(res =>{
+      const request = res.data
+      setstudents([...students, request]);
+    })
+    // setstudents([...students, newStudent]);
     // setstudents([...students, {
     //   id:uuid(), ...student}]);
   }
 
   //get student from local storage
   useEffect(() =>{
-    const retrievedStudent = JSON.parse(localStorage.getItem(STORAGE_KEY, JSON.stringify(students)));
+    // const retrievedStudent = JSON.parse(localStorage.getItem(STORAGE_KEY, JSON.stringify(students)));
+    axios.get('http://localhost:3006/students').then(resp =>{
+    console.log(resp); 
+    const retrievedStudent = resp.data;
     if(retrievedStudent) setstudents(retrievedStudent);
-  }, [])
+    })
+    // if(retrievedStudent) setstudents(retrievedStudent);
+  }, []);
   //set student to local storage
   useEffect(() =>{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+    // localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
   }, [students]);
   const deleteStudentHandler = (id) =>{
     const studentRemains = students.filter(student =>{
