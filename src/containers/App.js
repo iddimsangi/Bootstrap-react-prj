@@ -16,6 +16,8 @@ import {
 
 function App() {
   const[students, setstudents] = useState([]);
+  const[searchTerm, setSearchTerm] = useState("");
+  const[searchTermResult, setSearchTermResult] = useState([]);
   // const STORAGE_KEY = 'students';
   const addStudentHandler =(student) =>{
     
@@ -54,6 +56,20 @@ function App() {
     });
     setstudents(studentRemains);
   }
+  const searchKeyTermHandler =(searchValue) =>{
+    setSearchTerm(searchValue);
+    console.log(searchValue);
+    if(searchValue !== ""){
+      const newSearchResult = students.filter(student =>{
+       return Object.values(student).join("").toLowerCase().includes(searchValue.toLowerCase());
+      })
+      setSearchTermResult(newSearchResult);
+    }else{
+      setSearchTermResult(students);
+    }
+    
+    
+  }
   // const students = [{"fullName":"Anselma Mincini","email":"amincini0@upenn.edu"},
   // {"fullName":"Druci Pennings","email":"dpennings1@angelfire.com"},
   // {"fullName":"Fair Nickoles","email":"fnickoles2@bbb.org"},
@@ -71,7 +87,9 @@ function App() {
       <Switch>
           <Route path="/" exact render={ (props) =>(
             <StudentList {...props} 
-              studentsArray={students}
+              studentsArray={searchTerm.length < 1 ? students : searchTermResult}
+              term={searchTerm}
+              searchKeyTerm={searchKeyTermHandler}
               deleteStudentHandler={deleteStudentHandler} />
           )}/>
           <Route path="/AddStudent" render={(props) =>(

@@ -18,6 +18,8 @@ function StudentList(props) {
                     placeholder="Search"
                     className="mr-2"
                     aria-label="Search"
+                    value={props.term}
+                    onChange={(e) => props.searchKeyTerm(e.target.value)}
                 />
                 {/* <Button variant="outline-success">Search</Button> */}
              </Form>
