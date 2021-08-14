@@ -79,6 +79,7 @@ function App() {
             {...props}
             addStudentHandler={addStudentHandler}/>
           )}/>
+          <Route path="/StudentDetails" component={StudentDetails} />
       </Switch>
       </Container>
       

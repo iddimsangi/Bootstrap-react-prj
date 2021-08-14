@@ -1,8 +1,9 @@
 import {ListGroup, Button} from 'react-bootstrap';
 import React from 'react';
 import './StudentCard.css';
+import { Link } from "react-router-dom";
 export default function StudentCard(props) {
-    console.log(props);
+    // console.log(props);
     const{id,fullName, email} = props.student;
     return (
             <div className="Scard" >
@@ -29,7 +30,12 @@ export default function StudentCard(props) {
                         fontSize:'22px',
                         textTransform:'uppercase'
                         }}>
-                   {fullName} 
+                    <Link 
+                    to={{pathname:`/StudentDetails/${id}`, state:{students:props.student}}} 
+                    style={{textDecoration:'none'}}>
+                    {fullName} 
+                    
+                   
                     <span style={{
                      display:'block',
                      fontFamily:'-moz-initial', 
@@ -38,7 +44,8 @@ export default function StudentCard(props) {
                      fontWeight:'500',
                      color:'green',
                      marginLeft:'60px',
-                     marginTop:'-16px'}}>{email}</span>          
+                     marginTop:'-16px'}}>{email}</span>  
+                     </Link>        
                     </h>
                    <div style={{float:'right', marginTop:'-45px'}}>
                    <Button variant="primary">Update</Button> 

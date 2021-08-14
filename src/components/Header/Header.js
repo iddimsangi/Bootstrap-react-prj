@@ -12,10 +12,10 @@ function Header() {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Link to="/">
+        <Link style={{textDecoration:'none', textTransform:'uppercase'}} to="/">
         <Nav.Link  href="#home">Student list</Nav.Link>
         </Link>
-        <Link to="/AddStudent">
+        <Link style={{textDecoration:'none', textTransform:'uppercase'}} to="/AddStudent">
         <Nav.Link href="#link">Add Student</Nav.Link>
         </Link>
         
